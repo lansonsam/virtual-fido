@@ -18,8 +18,12 @@ namespace VFido.SecretManager.FileBasedSecretStore
         private const string AttestationRootKeyFileName = "attestation-root.key";
         private const string AttestationRootCertFileName = "attestation-root.crt";
 
-        /// <summary>Fixed AAGUID identifying every stick backed by this store type, regardless of directory.</summary>
-        private static readonly Guid AaguidGuid = new("f11e0a10-0ea1-4b1f-8b0a-1b0a1e0a1b0a");
+        /// <summary>Fixed AAGUID identifying every stick backed by this store type, regardless of directory.
+        /// NOTE (local build): this AAGUID is set to the YubiKey 5 series identifier so relying
+        /// parties that classify authenticators via the FIDO metadata service treat this stick as a
+        /// hardware security key rather than a platform passkey. It is a self-asserted identity:
+        /// the stick does not provide the transports or attestation chain that identifier implies.</summary>
+        private static readonly Guid AaguidGuid = new("ee882879-721c-4913-9775-3dfcce97072a");
 
         private readonly string _directory;
         private readonly string _attestationDirectory;
